@@ -1,20 +1,18 @@
 #include<bits/stdc++.h>
 using namespace std;
-int t[100][100];
+//int t[100][100];
 
 int knapsack_unbounded(int wt[],int val[],int w,int n){
-    for(int i=0;i<n+1;i++){
-        for(int j=0;j<w+1;j++){
-            t[i][j]=0;
+    int t[w+1];
+    memset(t,0,sizeof(t));
+
+    for(int i=0;i<w+1;i++){
+        for(int j=0;j<n;j++){
+            if(wt[j]<=i)
+            t[i]=max(t[i],t[i-wt[j]]+val[j]);
         }
     }
-    for(int i=1;i<n+1;i++){
-        for(int j=1;j<w+1;j++){
-            if(wt[i-1]<=j) t[i][j]=max(val[i-1]+t[i][j-wt[i-1]],t[i-1][j]);
-            else t[i][j]=t[i-1][j];
-        }
-    }
-    return t[n][w];
+    return t[w];
 }
 
 int main(){
