@@ -18,6 +18,10 @@ int knapsack_topdown(int wt[],int val[],int w,int n){
 }
 
 int main(){
+    clock_t start,end;
+    start=clock();
+    freopen("input1.txt","r",stdin);
+    freopen("output1.txt","w",stdout);
     int wt[100],val[100],w,n; cin >> n >> w;
     for(int i=0;i<n;i++){
         cin >> wt[i] ;
@@ -27,4 +31,6 @@ int main(){
     }
     int profit=knapsack_topdown(wt,val,w,n);
     cout << profit << endl;
+    end=clock();
+    cout << "The time(milisecond) spent on this algorithm: " << end-start << endl;
 }
